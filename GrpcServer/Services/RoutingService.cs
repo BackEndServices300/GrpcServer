@@ -9,7 +9,7 @@ namespace GrpcServer.Services
 {
     public class RoutingService : DrivingRouter.DrivingRouterBase
     {
-        public override async Task<RouteResponse> PlanRoute(RouteRequest request, ServerCallContext context)
+        public override  Task<RouteResponse> PlanRoute(RouteRequest request, ServerCallContext context)
         {
             var response = new RouteResponse();
             response.Miles = new Random().Next(15, 200);
@@ -19,7 +19,7 @@ namespace GrpcServer.Services
             response.Steps.Add("You missed it  - " + request.Street);
             var time = Timestamp.FromDateTime(DateTime.Now.AddHours(15));
             response.ArrivalTime = DateTime.Now.AddHours(15).ToString();
-            return response;
+            return Task.FromResult( response);
         }
     }
 }

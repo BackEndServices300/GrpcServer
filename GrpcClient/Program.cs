@@ -14,6 +14,7 @@ namespace GrpcClient
             Console.Write("Hit enter to do the deed");
             Console.ReadLine();
             using var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            
             var client = new Greeter.GreeterClient(channel);
 
             var reply = await client.SayHelloAsync(new HelloRequest { Name = "Putintane" });
@@ -22,6 +23,7 @@ namespace GrpcClient
 
             Console.WriteLine("Planning your route...");
 
+            
             var clientRouting = new DrivingRouter.DrivingRouterClient(channel);
             var request = new RouteRequest { Street = "555 Mockingbird Ct.", City = "Des Moines", Zip = "23892" };
             var replyRoute = await clientRouting.PlanRouteAsync(request);
