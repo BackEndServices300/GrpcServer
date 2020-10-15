@@ -3,8 +3,8 @@ syntax = "proto3";
 option csharp_namespace = "GrpcServer";
 
 package routePlanning;
-
-
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
 
 message RouteRequest {
@@ -15,10 +15,12 @@ message RouteRequest {
 
 message RouteResponse {
 	int32 miles =1;
-	string ArrivalTime = 2;
+	google.protobuf.Timestamp ArrivalTime = 2;
 	repeated string steps = 3;
 }
 
 service DrivingRouter {
 	rpc PlanRoute(RouteRequest) returns (RouteResponse);
 }
+
+

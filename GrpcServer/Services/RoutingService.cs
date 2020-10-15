@@ -17,9 +17,12 @@ namespace GrpcServer.Services
             response.Steps.Add("Turn right at Darrow");
             response.Steps.Add("Keep going until you get to the pacific");
             response.Steps.Add("You missed it  - " + request.Street);
-            var time = Timestamp.FromDateTime(DateTime.Now.AddHours(15));
-            response.ArrivalTime = DateTime.Now.AddHours(15).ToString();
+            response.ArrivalTime = Timestamp.FromDateTime(DateTime.Now.AddHours(12).ToUniversalTime());
             return Task.FromResult( response);
         }
+
+        
+
+        
     }
 }

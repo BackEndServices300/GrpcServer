@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -18,8 +18,11 @@
     <Protobuf Include="..\GrpcServer\Protos\greet.proto" GrpcServices="Client">
       <Link>Protos\greet.proto</Link>
     </Protobuf>
-    <Protobuf Include="..\GrpcServer\Protos\routePlanning.proto" GrpcServices="Client">
+    <Protobuf Include="..\GrpcServer\Protos\routePlanning.proto" GrpcServices="Client" ClientBaseType="ClientBase">
       <Link>Protos\routePlanning.proto</Link>
+    </Protobuf>
+    <Protobuf Include="..\GrpcServer\Protos\turnByTurn.proto" GrpcServices="Client">
+      <Link>Protos\turnByTurn.proto</Link>
     </Protobuf>
   </ItemGroup>
 

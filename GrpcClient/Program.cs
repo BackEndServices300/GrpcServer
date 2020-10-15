@@ -1,4 +1,6 @@
-﻿using Grpc.Net.Client;
+﻿using Google.Protobuf.WellKnownTypes;
+using Grpc.Core;
+using Grpc.Net.Client;
 using GrpcServer;
 using System;
 using System.Runtime.InteropServices;
@@ -33,6 +35,16 @@ namespace GrpcClient
             foreach(var step in replyRoute.Steps)
             {
                 Console.WriteLine($"\t{step}");
+            }
+
+            Console.WriteLine("Hit Enter to Start Turn By Turn Directions");
+            Console.ReadLine();
+            var client3 = new TurnByTurn.TurnByTurnClient(channel);
+            var streamingCall = client3.StartGuidance(new Empty());
+
+            await foreach(var step in streamingCall.ResponseStream.ReadAllAsync())
+            {
+                Console.WriteLine($"Turn {step.Direction} at {step.Road}");
             }
 
         }
